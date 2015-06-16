@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello, World!</title>
+  <script></script>
+</head>
+<body>
+  <!-- <iframe src="http://www.webpagetest.org/video/view.php?id=150325_9df3d65cf508fbcf22b16271aba19b77f0d9bce5&embed=1&width=520&height=432" width="520" height="432"></iframe>
+<iframe src="http://www.webpagetest.org/video/view.php?id=150604_7f8c9acb307eedff8b9c03d6d92b53c8f9c97872&embed=1&width=520&height=432" width="520" height="432"></iframe>
+-->
+<section>
+  <button onclick='Array.prototype.forEach.call(document.querySelectorAll("video"), function(video){video.play();});'>Play Videos</button>
+  <button onclick='Array.prototype.forEach.call(document.querySelectorAll("video"), function(video){video.pause();});'>Pause Videos</button>
+  <button onclick='document.querySelector("#filmstrip").style.display=document.querySelector("#filmstrip").style.display==="none"?"block":"none"'>Toggle Filmstrip</button>
+  <button onclick='document.querySelector("#video").style.display=document.querySelector("#video").style.display==="none"?"block":"none"'>Toggle Videos</button>
+</section>
+<section id='video'>
+  <video width="520" height="432" controls>
+    <source src="fwe_video.mp4" type="video/mp4"></video>
+  <video width="520" height="432" controls>
+    <source src="optimized_fwe_video.mp4" type="video/mp4"></video>
+</section>
+
+<section id='filmstrip' style='display:none;'>
+  <img src='./fwe_filmstrip.png' />
+  <img src='./optimized_fwe_filmstrip.png' />
+</section>
+</body>
+</html>
