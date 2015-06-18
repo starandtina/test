@@ -14,6 +14,7 @@
   <button onclick='Array.prototype.forEach.call(document.querySelectorAll("video"), function(video){video.pause();});'>Pause Videos</button>
   <button onclick='document.querySelector("#filmstrip").style.display=document.querySelector("#filmstrip").style.display==="none"?"block":"none"'>Toggle Filmstrip</button>
   <button onclick='document.querySelector("#video").style.display=document.querySelector("#video").style.display==="none"?"block":"none"'>Toggle Videos</button>
+  <button onclick='document.querySelector("#yslow").style.display=document.querySelector("#yslow").style.display==="none"?"block":"none"'>Toggle YSlow results</button>
 </section>
 <section id='video'>
   <video width="520" height="432" controls>
@@ -25,6 +26,13 @@
 <section id='filmstrip' style='display:none;'>
   <img src='./fwe_filmstrip.png' />
   <img src='./optimized_fwe_filmstrip.png' />
+</section>
+
+<section id='yslow' style='display:none;'>
+  <h1>2015.3</h1>
+  <img src='./awe_yslow_2015.3.png' />
+  <h1>2015.5</h1>
+  <img src='./awe_yslow_2015.5.png' />
 </section>
 </body>
 </html>
