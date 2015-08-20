@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>外域框架</title>
+</head>
+<body style='background: red;'>
+  <span>Domain: passport.com</span>
+  <br />
+  <span>收到参数：</span>
+  <input type='text' id='param' value='Hello World' />
+  <input type='button' value='Sent to Original Domain' onclick='GoToLocal()' />
+  <br />
+  <iframe id='local'></iframe>
+  <br />
+  <span>处理结果：</span>
+  <input id='result' type='text' />
+  <script type="text/javascript">
+  var aboradFrame = document.querySelector('#local').contentWindow;
+  var param = document.querySelector('#param');
+  var result = document.querySelector('#result');
+
+  param.value = location.hash.substring(1);
+  result.value = param.value + ' starandtina';
+
+  function GoToLocal(){
+    aboradFrame.location = 'http://active.com:3000/cdc_local.html#' + result.value;
+  }
+  </script>
+</body>
+</html>

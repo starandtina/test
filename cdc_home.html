@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>CDC Home Page</title>
+</head>
+<body style='background: #ccc;'>
+  <span>Domain: active.com</span>
+  <br />
+  <span>请求参数：</span>
+  <input type='text' id='param' value='Hello World' />
+  <input type='button' value='Sent to External Domain' onclick='GoToAborad()' />
+  <br />
+  <iframe id='abroad' width='400px' height='250px'></iframe> <br />
+  <span>最终结果：</span><input type='text' id='result' />
+  <script type="text/javascript">
+  var aboradFrame = document.querySelector('#abroad').contentWindow;
+  var param = document.querySelector('#param');
+  var result = document.querySelector('#result');
+
+  function GoToAborad(){
+    aboradFrame.location = 'http://passport.com:3000/cdc_abroad.html#' + param.value;
+  }
+  </script>
+</body>
+</html>
