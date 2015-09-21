@@ -1,0 +1,37 @@
+<ion-view view-title="My Active">
+  <ion-content class="padding">
+    <div class="list card animated fadeInLeft" ng-repeat="event in events">
+      <div class="item item-divider">
+        <div class='row'>
+          <div class='col col-40'>
+            <div ng-switch on="event.status">
+              <div ng-switch-when="Up Coming">
+                <span class='padding' style='color:white;background-color:red;'>{{event.status}}</span>
+                </div>
+              <div ng-switch-when="In Progress">
+               <span class='padding' style='border:1px solid #309437;'>{{event.status}}</span>
+              </div>
+              <div ng-switch-when="Rescheduled">
+                <span class='padding' style='border:1px solid yellow;'>{{event.status}}</span>
+              </div>
+              <div ng-switch-default></div>
+            </div>
+          </div>
+          <div class='col'><i style='float:right;' class='ico ion-chatbubble-working'></i>
+          </div>
+        </div>
+      </div>
+      <div class="item item-body">
+        <h2>{{event.name}}</h2>
+        <div>{{event.status}}</div>
+        <div> <i class='icon ion-pin'></i>
+          <span class='padding-left'>{{event.address}}</span>
+        </div>
+        <div>
+          <i class='icon ion-ios-clock-outline'></i>
+          <span class='padding-left'>{{event.date}}</span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

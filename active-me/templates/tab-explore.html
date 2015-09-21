@@ -1,0 +1,26 @@
+<ion-view view-title="Explore">
+  <ion-content class="padding">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="Search" ng-model='search'></label>
+    </div>
+    <div class="list card animated rubberBand" ng-repeat="event in events | filter:search">
+      <div class="item item-divider" style='padding-bottom:40px'>
+        <p class='dark' ng-click='popover.show($event)'>{{event.title}}</p>
+        <h2><a href='#/tab/events/{{event.id}}'>{{event.name}}</a></h2>
+        <p>{{event.status}}</p>
+        <p>{{event.lastText}}</p>
+      </div>
+      <div class="item item-body">
+        <p>{{event.content}}</p>
+        <div> <i class='icon ion-pin'></i>
+          <span class='padding-left'>{{event.address}}</span>
+        </div>
+        <div>
+          <i class='icon ion-ios-clock-outline'></i>
+          <span class='padding-left'>{{event.date}}</span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
