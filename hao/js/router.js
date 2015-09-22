@@ -3,7 +3,7 @@ define(['jquery', 'underscore', 'backbone', 'modules/home/home', 'modules/search
 	'modules/campsiteList/campsiteList','modules/startDate/startDate', 'modules/startDateFrom/startDateFrom', 
 	'modules/startDateTo/startDateTo', 
 	'modules/reservationList/reservationList','modules/reservationListFrom/reservationListFrom','modules/tripDone/tripDone',
-	'modules/tripOngoing/tripOngoing','modules/notes/notes','modules/mine/mine','modules/friendsList/friendsList', 'modules/checkList/checkList',
+	'modules/tripOngoing/tripOngoing','modules/notes/notes','modules/mine/mine','modules/friendsList/friendsList', 'modules/checklist/checklist',
 	'modules/packlistcategory/packlistcategory','modules/onGoingMap/onGoingMap','modules/onGoingMapCopy/onGoingMapCopy',
 	'modules/campsitemap/campsitemap','swiper',  'jqm'],
 	function ($, _, Backbone, HomeView, SearchView, filterView, LoginView, IndexView, TripView, TripSearchView, TripListView, 
