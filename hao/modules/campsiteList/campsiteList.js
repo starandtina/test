@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'text!modules/campsitelist/campsitelistView.html'], function ($, _, Backbone, campsitelistViewTemplate) {
+define(['jquery', 'underscore', 'backbone', 'text!modules/campsiteList/campsiteListView.html'], function ($, _, Backbone, campsitelistViewTemplate) {
     var campsitelistView = Backbone.View.extend({
         template: _.template(campsitelistViewTemplate),
         render: function () {
