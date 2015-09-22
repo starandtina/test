@@ -168,7 +168,7 @@ var requirejs, require, define;
     function newContext(contextName) {
         var context, resume,
             config = {
-                waitSeconds: 7,
+                waitSeconds: 30,
                 baseUrl: "./",
                 paths: {},
                 pkgs: {},
