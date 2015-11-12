@@ -1,0 +1,193 @@
+body, div, ul, li, footer{
+	margin:0;
+	padding:0;
+}
+*{
+    outline: none !important;
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color:#fff;
+    -webkit-border-radius:0;
+}
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+::-webkit-scrollbar-thumb{
+    height:50px;
+    background-color:#999;
+    -webkit-border-radius:4px;
+    outline:2px solid #fff;
+    outline-offset:-2px;
+    border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover{
+    height:50px;
+    background-color:#9f9f9f;
+    -webkit-border-radius:4px;
+}
+
+body{
+    overflow: hidden;
+    background-color: rgb(29, 32, 41);
+}
+
+.bg{
+   /* width: 431px;
+    height: 875px;*/
+    width: 415px;
+    height: 850px;
+    background-image: url("../images/phone-bg.png");
+    position: absolute;
+    margin: 0 auto;
+    left: 50%;
+    top: 20px;
+    margin-left: -216px;
+}
+#main{
+    width: 375px;
+    height: 671px;
+    background-color: black;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 103px;
+    left: -9px;
+}
+header{
+	border: 1px solid #74A988;
+    background-color: #19b399;
+    text-align: center;
+    color: #fff;
+    line-height: 40px;
+    font-size: 1.3em;
+}
+
+
+footer{
+	display:-moz-box; /* Firefox */
+	display:-webkit-box; /* Safari and Chrome */
+	display:box;
+    /*padding: 5px 0;*/
+    background-color: #e3e3e3;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+.ui-header-fixed, .ui-footer-fixed {
+    left: 50%;
+    right: 0;
+    width: 375px;
+    position: fixed;
+    z-index: 1000;
+    margin-left: -197px;
+    margin-top: 89px;
+}
+
+.ui-header-fixed {
+	top: 13px;
+}
+
+.ui-footer-fixed {
+    top: 638px;
+    height: 47px;
+}
+
+/* .menu-item{
+    -moz-box-flex:1.0; Firefox
+    -webkit-box-flex:1.0; Safari and Chrome
+    box-flex:1.0;
+    text-align: center;
+}
+
+a.menu-item-normal{
+    color: #787878;
+}
+
+a.menu-item-selected{
+    color: #25A18D;
+} */
+/*******home********/
+/*div.swiper-slide{
+    height: 200px;
+    background-image: url("../images/home/Home-slider.jpg");
+}*/
+
+/*******login*******/
+.login{
+        position: absolute;
+    top: 481px;
+    left: 24px;
+    width: 328px;
+    height: 51px;
+    z-index: 9000;
+}
+
+.singup{
+        position: absolute;
+    top: 555px;
+    left: 24px;
+    width: 328px;
+    height: 51px;
+    z-index: 9000;
+}
+
+/*********trip*******/
+
+.triplist li{
+	margin: 15px 10px;
+}
+
+.trip-image{
+	width:100%;
+	max-width: 100%;
+	height: 163px;
+}
+
+
+
+
+/******overirde css*******/
+.ui-body-c, .ui-overlay-c {
+	background-color: #e3e3e3;
+}
+
+
+
+/********swiper*******/
+.swiper-container {
+    width: 375px;
+    height: 671px;
+   /* margin:0;
+    margin-top: 64px;*/
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /*background: #fff;*/
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#main>div{
+    background-color: black;
+}
+
+.swiper-pagination-bullet {
+    width: 11px;
+    height: 11px;
+}

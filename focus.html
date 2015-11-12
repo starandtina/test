@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'></meta>
+  <style>
+  input {
+      float: right;
+      transform: translateX(200px);
+      transition: all ease 2s;
+  }
+  
+  .animeStart {
+      transform: translateX(0px);
+  }
+  
+  .start {
+      position: absolute;
+  }
+  
+  .container {
+      border: solid 1px;
+      width: 50%;
+      overflow: auto;
+      padding: 10px
+  }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="text" id="test" />
+    <button id="start-with-timeout">start with timeout</button>
+    <button id="start">start</button>
+  </div>
+  <script>
+    window.onload = function() {
+        var input = document.querySelector('#test');
+        document.querySelector('#start-with-timeout').onclick = function() {
+            input.className = ' animeStart';
+            setTimeout(function() {
+                input.focus();
+            }, 3000);
+        }
+        document.querySelector('#start').onclick = function() {
+            input.className = ' animeStart';
+            input.focus();
+        }
+    }
+    </script>
+</body>
+</html>

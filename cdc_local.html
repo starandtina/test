@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>本域框架</title>
+</head>
+<body style='background: #ccc;'>
+  <span>Domain: active.com</span>
+  <br />
+  <span>收到结果：</span>
+  <input type='text' id='result' />
+  <input type='button' value='Go To Home' onclick='GoToHome()' />
+  <br />
+  <script type="text/javascript">
+  var result = document.querySelector('#result');
+
+   result.value = location.hash.substring(1);
+
+  function GoToHome(){
+    var home = parent.parent;
+
+    home.document.querySelector('#result').value = result.value;
+  }
+  </script>
+</body>
+</html>
