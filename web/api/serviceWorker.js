@@ -4,14 +4,41 @@
 // http://creativecommons.org/publicdomain/zero/1.0/
 
 (function () {
-
   // Update 'version' if you need to refresh the cache
-  var staticCacheName = 'static--starandtina.github.io/test/web/api';
-  var version = 'v1::';
+  var version = 'v2:';
+  var staticCacheName = version + 'static--starandtina.github.io/test/web/api';
 
-  // Store core files in a cache (including a page to display when offline)
-  function updateStaticCache() {
-    return caches.open(version + staticCacheName)
+  var rainbows = 'https://i.imgur.com/EgwCMYB.jpg';
+  var offlineFundamentals = [
+    './boilerplate.html',
+    './CSS.supports.html',
+    './fwe_filmstrip.png',
+    './getUserMedia.html',
+    './matches.html',
+    './matchMedia.html',
+    './notification.html',
+    './pageVisibility.html',
+    './resourceHints.html',
+    './userTiming.html',
+    './serviceWorker.html',
+    './offline.html',
+    rainbows
+  ];
+  // Service Worker Life Circle
+  // http://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-state-enum
+
+  self.addEventListener('install', installer);
+  self.addEventListener('activate', activator);
+  self.addEventListener('fetch', fetcher);
+
+  self.addEventListener('message', function (event) {
+    if (event.data.command === 'limitCaches') {
+      limitCache(staticCacheName, 10);
+    }
+  });
+
+  function installer(event) {
+    event.waitUntil(caches.open(staticCacheName)
       .then(function (cache) {
         // These items won't block the installation of the Service Worker
         cache.addAll([
@@ -20,31 +47,11 @@
           './sw/test2.html'
         ]);
         // These items must be cached for the Service Worker to complete installation
-        return cache.addAll([
-          // 'http://1.cuzillion.com/bin/resource.cgi?type=gif&sleep=2&n=4&t=1450071934',
-          // 'http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=2&n=3&t=1450071818',
-          './boilerplate.html',
-          './CSS.supports.html',
-          './fwe_filmstrip.png',
-          './getUserMedia.html',
-          './matches.html',
-          './matchMedia.html',
-          './notification.html',
-          './pageVisibility.html',
-          './resourceHints.html',
-          './userTiming.html',
-          './serviceWorker.html',
-          './offline.html'
-      ]);
-      });
-  };
+        return cache.addAll(offlineFundamentals);
+      }));
+  }
 
-  self.addEventListener('install', function (event) {
-    event.waitUntil(updateStaticCache());
-  });
-
-  // When the activate event fires, it’s a good opportunity to clean up any caches that are out of date
-  self.addEventListener('activate', function (event) {
+  function activator(event) {
     event.waitUntil(
       caches.keys()
       .then(function (keys) {
@@ -59,13 +66,17 @@
         );
       })
     );
-  });
+  }
 
-  // The fetch event is fired every time the browser is going to make a request
-  // Our cache strtegy:
-  // 1. Fetch not-Get request from the network
-  self.addEventListener('fetch', function (event) {
+  function fetcher(event) {
     var request = event.request;
+    var url = new URL(request.url);
+
+    // Only deal with requests to my own server
+    if (url.origin !== location.origin) {
+      return;
+    }
+
     // Always fetch non-GET requests from the network
     if (request.method !== 'GET') {
       event.respondWith(
@@ -87,7 +98,7 @@
         .then(function (response) {
           // Stash a copy of this page in the cache
           var copy = response.clone();
-          caches.open(version + staticCacheName)
+          caches.open(staticCacheName)
             .then(function (cache) {
               cache.put(request, copy);
             });
@@ -124,5 +135,20 @@
         }
       })
     );
-  });
+  }
+
+  // Limit the number of items in a specified cache.
+  var limitCache = function (cacheName, maxItems) {
+    caches.open(cacheName)
+      .then(function (cache) {
+        cache.keys()
+          .then(function (keys) {
+            if (keys.length > maxItems) {
+              cache.delete(keys[0])
+                .then(limitCache(cacheName, maxItems));
+            }
+          });
+      });
+  };
+
 })();

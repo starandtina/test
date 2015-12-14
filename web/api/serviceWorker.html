@@ -24,6 +24,14 @@
         scope: '/web/api/'
       });
     }
+
+    window.addEventListener('load', function () {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          'command': 'limitCaches'
+        });
+      }
+    });
   </script>
 </body>
 </html>
