@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>matches</title>
+  <link rel='stylesheet' type='text/css' href='http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=2&n=1&t=1450071699'>
+  <link rel='stylesheet' type='text/css' href='http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=2&n=2&t=1450071699'>
+  <script>performance.mark('stylesheets done blocking');</script>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+  <script type='text/javascript' src='http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=2&n=3&t=1450071818'></script>
+  <script>performance.mark('scripts done blocking');</script>
+</head>
+<body>
+  <h1>Hello, matches</h1>
+  <script>performance.mark('text displayed');</script>
+  <img src='http://1.cuzillion.com/bin/resource.cgi?type=gif&sleep=2&n=4&t=1450071934'>
+  <script>
+    performance.clearMarks('img displayed');
+    performance.mark('img displayed');
+  </script>
+  <input type=button value='Update' onclick='fetchData()'>
+
+  <script>
+    function fetchData() {
+      performance.clearMarks('start update');
+      performance.mark('start update');
+
+      // Do an XHR or JSON request that calls updateData() with the new data.
+      // Here we use `setTimeout` for demo
+      setTimeout(updateData, 2000);
+    }
+
+
+    function updateData(data) {
+      performance.clearMarks('finish update');
+      performance.mark('finish update');
+      performance.measure('update data', 'start update', 'finish update');
+    }
+  </script>
+</body>
+</html>
