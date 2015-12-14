@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>matchMedia</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+</head>
+  <body>
+    <h1>Hello, matchMedia</h1>
+    <button data-query='screen and (min-width: 600px)'>Match Media screen and (min-width: 600px)</button>
+    <button data-query='(orientation: portrait)'>Match (orientation: portrait)</button>
+    <button data-query='(orientation: portrait)' data-listener='true'>Match (orientation: portrait) and addListener</button>
+    
+    <h1 id='result'></h1>
+    <script>
+      NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+
+      for (var b of document.querySelectorAll('button')) {
+        b.addEventListener('click', e => {
+          var target = e.target;
+          var query = target.dataset['query'];
+          var addListener = target.dataset['listener'];
+          var mediaQueryList = window.matchMedia(query);
+
+          document.querySelector('#result').innerHTML = `${query}: ${mediaQueryList.matches}`;
+
+          if (addListener === 'true') {
+            mediaQueryList.addListener( mediaQueryList => {
+              document.querySelector('#result').innerHTML = `${query}: ${mediaQueryList.matches}`;
+            })
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>CSS.supports method</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+  <style>
+    @supports 
+          (display: -webkit-flex) or
+          (display: -moz-flex) or
+          (display: flex) {
+      h3 { color: green; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, CSS.supports method</h1>
+  <h3>If your browser supports @support, this message will be green. If not, this message will be red.</h3>
+  <textarea id='input' rows='10' cols='50'>(hyphens:auto)</textarea><br>
+  <button id='CSSsupports'>Test CSS.supports method</button>
+  <p id='result'></p>
+  <script>
+    document.querySelector('#CSSsupports').addEventListener('click', e => {
+      var input = document.querySelector('#input').value;
+      document.querySelector('#result').innerHTML = `Yes, your browser support for ${input} is <strong>${CSS.supports(input)}</strong>`;
+    }, false);
+    document.querySelector('#CSSsupports').click();
+  </script>
+</body>
+</html>

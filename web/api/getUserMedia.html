@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>getUserMedia</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+</head>
+<body>
+  <h1>Hello, getUserMedia</h1>
+  <p><button id='run'>Run your own web camera</button></p>
+  <video id='getUserMedia'></video>
+</body>
+  <script>
+    navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia;
+
+    document.querySelector('#run').addEventListener('click', e => {
+      navigator.getUserMedia({
+        video: true,
+        audio: true
+      }, stream => {
+        var video = document.getElementById('getUserMedia');
+
+        // Here we use Object URL that is URL but point to files on disk.
+        if (window.URL) {
+          video.src = window.URL.createObjectURL(stream);
+        } else {
+          video.src = stream;
+        }
+
+        video.autoplay = true;
+      }, () => {
+        alert('onError')
+      });
+    }, false);
+  </script>
+</html>

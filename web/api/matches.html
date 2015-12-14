@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>matches</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+  <style>
+    #result
+    {
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, matches</h1>
+  <ul>
+    <li>Orange-winged parrot</li>
+    <li class='endangered'>Philippine eagle</li>
+    <li>Great white pelican</li>
+  </ul>
+  <button id='find'>Find the most dangerous one!</button>
+  <div id='result'></div>
+  <script>
+    NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+    
+    document.querySelector('#find').addEventListener('click', e => {
+      for (var b of document.querySelectorAll('li')) {
+        if (b.matches('.endangered')) {
+          var p = document.createElement('p');
+          p.innerHTML = `The ${b.textContent} is endangered!`;
+          document.querySelector('#result').appendChild(p);
+        }
+      }
+    }, false)
+
+  </script>
+</body>
+</html>

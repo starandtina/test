@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>Service Workers!</title>
+</head>
+<body>
+  <h1>Hello, Service Workers!</h1>
+  <a href='./CSS.supports.html'>Navigate to CSS.supports.html</a>
+   <a href='./serviceWorkerTest1.html'>Navigate to serviceWorkerTest1.html</a>
+  <script>
+  // Register our service-worker
+  if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('./serviceWorker.js', {
+          scope: '/web/api/'
+      });
+      window.addEventListener('load', function() {
+        if (navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({'command': 'trimCaches'});
+        }
+      });
+  }
+  </script>
+</body>
+</html>

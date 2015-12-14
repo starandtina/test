@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>Notification</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+</head>
+<body>
+  <h1>Hello, Notification!</h1>
+  <button id='notify'>Notify me!</button>
+  <script>
+     window.addEventListener('load', () => {
+       // At first, let's check if we have permission for notification
+       // If not, let's ask for it
+       if (window.Notification && Notification.permission !== "granted") {
+         Notification.requestPermission(function (status) {
+           if (Notification.permission !== status) {
+             Notification.permission = status;
+           }
+         });
+       }
+     })
+
+     document.querySelector('#notify').addEventListener('click', e => {
+       if (Notification.permission === 'granted') {
+         var i = 0;
+         // Using an interval cause some browsers (including Firefox) are blocking notifications if there are too much in a certain time.
+         var interval = window.setInterval(function () {
+           // Thanks to the tag, we should only see the "Hi! 9" notification 
+           // Regarding more options, refer to https://notifications.spec.whatwg.org/#create-a-notification
+           var n = new Notification(`Notification Title: ${i}`, {
+             body: 'Hello Notification',
+             icon: 'http://www.active.com/asset_pipeline/teasers/browse-running-5304f0e1ce65510712382bb49e2578ab.jpg',
+             tag: 'activity'
+           })
+           if (i++ == 9) {
+             window.clearInterval(interval);
+           }
+         }, 200);
+       }
+       // If the user hasn't told if he wants to be notified or not
+       // Note: because of Chrome, we are not sure the permission property
+       // is set, therefore it's unsafe to check for the "default" value.
+       else if (window.Notification && Notification.permission !== "denied") {
+         Notification.requestPermission(function (status) {
+           if (Notification.permission !== status) {
+             Notification.permission = status;
+           }
+
+           // If the user said okay
+           if (status === "granted") {
+             var i = 0;
+             // Using an interval cause some browsers (including Firefox) are blocking notifications if there are too much in a certain time.
+             var interval = window.setInterval(function () {
+               // Thanks to the tag, we should only see the "Hi! 9" notification 
+               var n = new Notification("Hi! " + i, {
+                 tag: 'activity'
+               });
+               if (i++ == 9) {
+                 window.clearInterval(interval);
+               }
+             }, 200);
+           }
+
+           // Otherwise, we can fallback to a regular modal alert
+           else {
+             alert("Hi!");
+           }
+         });
+       }
+
+       // If the user refuses to get notified
+       else {
+         // We can fallback to a regular modal alert
+         alert("Hi!");
+       }
+     }, false)
+  </script>
+</body>
+</html>

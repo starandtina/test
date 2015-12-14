@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='UTF-8'>
-  <title>matches</title>
+  <title>User Timing</title>
   <link rel='stylesheet' type='text/css' href='http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=2&n=1&t=1450071699'>
   <link rel='stylesheet' type='text/css' href='http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=2&n=2&t=1450071699'>
   <script>performance.mark('stylesheets done blocking');</script>
@@ -11,7 +11,7 @@
   <script>performance.mark('scripts done blocking');</script>
 </head>
 <body>
-  <h1>Hello, matches</h1>
+  <h1>Hello, User Timing</h1>
   <script>performance.mark('text displayed');</script>
   <img src='http://1.cuzillion.com/bin/resource.cgi?type=gif&sleep=2&n=4&t=1450071934'>
   <script>
@@ -36,6 +36,31 @@
       performance.mark('finish update');
       performance.measure('update data', 'start update', 'finish update');
     }
+  </script>
+
+  <button id='print'>Print Marks & Measures</button>
+  <div id='marks'></div>
+  <div id='measures'></div>
+  <script>
+    document.querySelector('#print').addEventListener('click', e => {
+      // Print marks
+      var perfMarks = performance.getEntriesByType('mark');
+      document.getElementById('marks').innerHTML = '';
+      for (i = 0; i < perfMarks.length; i++) {        debugger
+       document.getElementById('marks').innerHTML +=
+         'Name: ' + perfMarks[i].name + ' - ' +
+         'Start Time: ' + perfMarks[i].startTime + '<br />';
+      }
+
+      // Print measures
+      var perfMeasures = performance.getEntriesByType('measure');
+      document.getElementById('measures').innerHTML = '';
+      for (i = 0; i < perfMeasures.length; i++) {
+       document.getElementById('measures').innerHTML +=
+         'Name: ' + perfMeasures[i].name + ' - ' +
+         'Duration: ' + perfMeasures[i].duration + '<br />';
+      }
+     }, false)
   </script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>Page Visibility</title>
+  <script src='https://google.github.io/traceur-compiler/bin/traceur.js'></script>
+  <style>
+    strong {font-weight: bolder;}
+    p {margin-bottom: 15px;}
+  </style>
+</head>
+<body>
+  <h1>Hello, Page Visibility</h1>
+  <video width='520' height='432' controls id='video'>
+    <source src='https://github.com/starandtina/test/blob/gh-pages/fwe_video.mp4?raw=true' type='video/mp4'>
+  </video>
+  <p id='result'></p>
+  <script>
+    // http://www.smashingmagazine.com/2015/01/20/creating-sites-with-the-page-visibility-api/
+    var video = document.querySelector('#video');
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        video.pause();
+        document.querySelector('#result').innerHTML = `${document.querySelector('#result').innerHTML}doument.hidden=${document.hidden} document.visibilityState=${document.visibilityState} <strong>Pause Video</strong> <br>`;
+      } else {
+        video.play();
+        document.querySelector('#result').innerHTML = `${document.querySelector('#result').innerHTML}doument.hidden=${document.hidden} document.visibilityState=${document.visibilityState} <strong>Play Video</strong> <br>`;
+      }
+    });
+  </script>
+</body>
+</html>
