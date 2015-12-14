@@ -6,20 +6,24 @@
 </head>
 <body>
   <h1>Hello, Service Workers!</h1>
-  <a href='./CSS.supports.html'>Navigate to CSS.supports.html</a>
-   <a href='./serviceWorkerTest1.html'>Navigate to serviceWorkerTest1.html</a>
+  <a href='./CSS.supports.html'>CSS.supports</a><br>
+  <a href='./getUserMedia.html'>getUserMedia</a><br>
+  <a href='./matches.html'>matches</a><br>
+  <a href='./matchMedia.html'>matchMedia</a><br>
+  <a href='./notification.html'>notification</a><br>
+  <a href='./pageVisibility.html'>pageVisibility</a><br>
+  <a href='./resourceHints.html'>resourceHints</a><br>
+  <a href='./userTiming.html'>userTiming</a><br>
+  <a href='./serviceWorker.html'>serviceWorker</a><br>
+  <a href='./sw/test1.html'>Navigate to sw/test1.html</a><br>
+  <a href='./sw/test2.html'>Navigate to sw/test2.html</a><br>
   <script>
-  // Register our service-worker
-  if (navigator.serviceWorker) {
+    // Register our service-worker
+    if (navigator.serviceWorker) {
       navigator.serviceWorker.register('./serviceWorker.js', {
-          scope: '/web/api/'
+        scope: '/web/api/'
       });
-      window.addEventListener('load', function() {
-        if (navigator.serviceWorker.controller) {
-          navigator.serviceWorker.controller.postMessage({'command': 'trimCaches'});
-        }
-      });
-  }
+    }
   </script>
 </body>
 </html>
