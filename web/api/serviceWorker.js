@@ -21,6 +21,7 @@
     './resourceHints.html',
     './userTiming.html',
     './serviceWorker.html',
+    './toggleStyles.html',
     './offline.html',
     rainbows
   ];
