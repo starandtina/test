@@ -26,7 +26,7 @@
          var i = 0;
          // Using an interval cause some browsers (including Firefox) are blocking notifications if there are too much in a certain time.
          var interval = window.setInterval(function () {
-           // Thanks to the tag, we should only see the "Hi! 9" notification 
+           // Thanks to the tag, we should only see the last notification 
            // Regarding more options, refer to https://notifications.spec.whatwg.org/#create-a-notification
            var n = new Notification(`Notification Title: ${i}`, {
              body: 'Hello Notification',
@@ -52,7 +52,7 @@
              var i = 0;
              // Using an interval cause some browsers (including Firefox) are blocking notifications if there are too much in a certain time.
              var interval = window.setInterval(function () {
-               // Thanks to the tag, we should only see the "Hi! 9" notification 
+               // Thanks to the tag, we should only see the Last one notification 
                var n = new Notification("Hi! " + i, {
                  tag: 'activity'
                });

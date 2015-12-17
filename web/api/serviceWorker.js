@@ -31,10 +31,12 @@
   self.addEventListener('install', installer);
   self.addEventListener('activate', activator);
   self.addEventListener('fetch', fetcher);
+  self.addEventListener('push', pusher);
+
 
   self.addEventListener('message', function (event) {
     if (event.data.command === 'limitCaches') {
-      limitCache(staticCacheName, 10);
+      limitCache(staticCacheName, 100);
     }
   });
 
@@ -43,6 +45,7 @@
       .then(function (cache) {
         // These items won't block the installation of the Service Worker
         cache.addAll([
+          'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
           'https://google.github.io/traceur-compiler/bin/traceur.js',
           './sw/test1.html',
           './sw/test2.html'
@@ -74,9 +77,9 @@
     var url = new URL(request.url);
 
     // Only deal with requests to my own server
-    if (url.origin !== location.origin) {
-      return;
-    }
+    // if (url.origin !== location.origin) {
+    //   return;
+    // }
 
     // Always fetch non-GET requests from the network
     if (request.method !== 'GET') {
@@ -151,5 +154,13 @@
           });
       });
   };
+
+  function pusher(event) {
+    event.waitUntil(self.registration.showNotification('Notification From Push Service', {
+      lang: 'zh',
+      body: '你好！世界！',
+      icon: rainbows
+    }));
+  }
 
 })();

@@ -22,6 +22,7 @@
 
   <script>
     function fetchData() {
+      performance.clearMeasures('update data');
       performance.clearMarks('start update');
       performance.mark('start update');
 
@@ -39,19 +40,19 @@
   </script>
 
   <button id='print'>Print Marks & Measures</button>
-  <div id='marks'></div>
+  <div id='marks'></div> <br><br>
   <div id='measures'></div>
   <script>
     document.querySelector('#print').addEventListener('click', e => {
       // Print marks
       var perfMarks = performance.getEntriesByType('mark');
       document.getElementById('marks').innerHTML = '';
-      for (i = 0; i < perfMarks.length; i++) {        debugger
+      for (i = 0; i < perfMarks.length; i++) {
        document.getElementById('marks').innerHTML +=
          'Name: ' + perfMarks[i].name + ' - ' +
          'Start Time: ' + perfMarks[i].startTime + '<br />';
       }
-
+      
       // Print measures
       var perfMeasures = performance.getEntriesByType('measure');
       document.getElementById('measures').innerHTML = '';
